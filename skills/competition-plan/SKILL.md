@@ -26,6 +26,18 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agen
 
 ## Workflow
 
+### Step 0: 提取硬性约束 (红线)
+
+**首先**从 `competition/COMPETITION_ANALYSIS.md` 的 "硬性约束" 部分提取所有限制:
+- 模型参数量上限
+- 推理时间/硬件限制
+- 禁止/必须使用的资源
+- 其他规则
+
+**所有后续设计的实验路径必须在这些约束内。**
+例如: 如果限制 ≤20B 参数，则不能规划任何 70B/72B 模型的实验。
+在每个实验节点旁标注是否满足约束。
+
 ### Step 1: 确定问题类型和方案空间
 
 根据赛题分析，确定:
@@ -33,6 +45,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agen
 - **数据规模**: 小 (<10K) / 中 (10K-1M) / 大 (>1M)
 - **特征类型**: 表格 / 文本 / 图像 / 混合
 - **评价指标特性**: 对什么敏感 (阈值? 排序? 绝对值?)
+- **约束下的可行方案空间**: 在硬性约束内，哪些模型/方法可用？
 
 ### Step 2: 设计实验路径树
 
