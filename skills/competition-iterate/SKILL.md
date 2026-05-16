@@ -9,6 +9,20 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, Agent, Skill, 
 
 自动迭代实验: **$ARGUMENTS**
 
+## 停止指令
+
+用户可以随时通过以下方式终止迭代:
+- 说 **"停"、"stop"、"终止"、"暂停"、"别跑了"** → 立即停止当前迭代，保存状态
+- 说 **"跳过"、"skip"** → 跳过当前实验，进入下一个
+- 说 **"切换方向"** → 停止当前路径，切换到其他实验路径
+
+收到停止指令时:
+1. 如果有训练正在运行 → 终止训练进程
+2. 保存当前状态到 `competition/ITERATION_STATE.json` (status: "paused")
+3. 更新 `competition/EXPERIMENT_LOG.md` 记录中断原因
+4. 向用户报告当前进度和最佳分数
+5. **立即停止，不要再启动下一轮**
+
 ## Constants
 
 - **MAX_ITERATIONS = 20** — 最大迭代次数

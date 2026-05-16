@@ -9,6 +9,19 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agen
 
 竞赛: **$ARGUMENTS**
 
+## 停止指令
+
+用户可以随时终止流程:
+- **"停"、"stop"、"终止"、"暂停"** → 立即停止，保存所有状态
+- **"跳过这步"、"skip"** → 跳过当前阶段，进入下一阶段
+- **"只做到这里"** → 完成当前阶段后停止，不进入下一阶段
+
+收到停止指令时，必须:
+1. 终止所有正在运行的进程
+2. 保存当前状态 (ITERATION_STATE.json status: "paused")
+3. 报告已完成的工作和当前最佳分数
+4. **立即停止，不要继续下一步**
+
 ## Overview
 
 全自动竞赛打榜流水线，从赛题解析到提交优化:
